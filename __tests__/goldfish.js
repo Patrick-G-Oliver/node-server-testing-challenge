@@ -19,7 +19,7 @@ describe("goldfish integration tests", async () => {
     it("creates a new golfish resource", async () => {
         const res = await supertest(server)
             .post("/goldfish")
-            .send({ breed: "shubunkin"})
+            .send({ breed: "shubunkin" })
         expect(res.statusCode).toBe(201)
         expect(res.type).toBe("application/json")
         expect(res.body.breed).toBe("shubunkin")
@@ -28,9 +28,22 @@ describe("goldfish integration tests", async () => {
         expect(res.body.id).toBeDefined()
     })
 
+    it("throws an error if breed info is omitted", async () => {
+        const res = await supertest(server)
+            .post("/goldfish")
+            .send({ breed: null })
+        expect(res.statusCode).toBe(500)
+    })
+
     it("deletes a golfish resource chosen by id", async () => {
         const res = await supertest(server)
             .delete("/goldfish/2")
         expect(res.statusCode).toBe(204)
+    })
+
+    it("throws an error if id is not found for delete", async () => {
+        const res = await supertest(server)
+            .delete("/goldfish/100")
+        expect(res.statusCode).toBe(404)
     })
 })
