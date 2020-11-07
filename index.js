@@ -16,6 +16,20 @@
 // 15) check out the newly-created .db3 table on TablePlus (SQL connection) (check both 'exports.up' and 'exports.down'
 // 			function expressions with < npx knex migrate:latest > & < npx knex migrate:rollback >, respectively).
 // 16) set up the goldfish folder with the goldfish-model.js and goldfish-router.js files
+// 17) add "test": "cross-env NODE_ENV=testing jest --watch", "server": "cross-env NODE_ENV=development nodemon index.js", 
+// 		to "scripts" object in package.json
+// 18) switch between development and testing databases with < npx knex migrate:latest --env=testing > command in terminal (see
+//		knexfile.js)
+// 19) set up __tests__ folder (this "double-underscore" nomenclature is needed for testing software to recognize the test files)
+// 20) set up goldfish.js file in the __tests__ folder with the necessary integration tests and beforeEach() function (see step 21) below)
+// 21) set up seeds file and folder (for reseed beforeEach() function in the __tests__/goldfish.js file) with: 
+// 		npx knex seed:make goldfish (this creates the golfish.js file in the seeds folder)
+// 22) write up the seed data (as appears in seeds/goldfish.js)
+// 23) populate the goldfish table with seed file data by running: npx knex seed:run
+// 24) check out the now-populated table in TablePlus
+
+// to run server: < npm run server >
+// to run tests: < npm run test >
 
 
 // Note that the server (i.e. the server.js file) is separated from the code that runs the server (in index.js) in order to allow for 
